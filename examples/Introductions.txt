@@ -1,0 +1,2 @@
+﻿1. Minimum setting speed:60
+2. Maximum setting speed:300
