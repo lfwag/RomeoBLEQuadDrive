@@ -6,7 +6,7 @@
 * 
 * @author linfeng(490289303@qq.com)
 * @version  V1.0
-* @date  2015-12-4
+* @date  2016-3-2
 */
 
 #ifndef __ENCODER__H
@@ -37,16 +37,6 @@ typedef struct
 	GPIO_TypeDef *GPIO;             ///<GPIO
 	TIM_TypeDef *TIM;               ///<TIMER
 }EncoderIO;
-
-typedef struct
-{
-  uint32_t RCC_APBPeriph_GPIO; ///<GPIO clock
-  uint32_t pin1;               ///<GPIO pin
-  uint32_t pin2;               ///<GPIO pin
-  GPIO_TypeDef *GPIO;          ///<GPIO
-  uint8_t pwmflag1;            ///<pwmflag
-  uint8_t pwmflag2;            ///<spwmflag
-}MotorIO;
 
 /*!
 * @brief Motor Quadrature motor configuration function
