@@ -1,9 +1,8 @@
 /*!
-* @file Motor.cpp
-* @brief Motor.cpp Interrupted function deployment, encoder motor configurations and corresponding PWM soft function
+* @file RemeoBLEQuadDrive.ino
+* @brief RemeoBLEQuadDrive.ino PID control system of DC motor
 *
-*  Motor.cpp Corresponds to a set of orthogonal codes for each motor and PWM. 
-*               Implements timer 5 implementation of PWM, timer every 3.9 μs (1/256 MS) into an interruption.
+*  RemeoBLEQuadDrive.ino Use PID control 4 way DC motor direction and speed
 * 
 * @author linfeng(490289303@qq.com)
 * @version  V1.0
@@ -17,10 +16,10 @@ int motorSpeed[4] = {-200,200,400,-400};/*Set 4 speed motor*/
 /* Speed=motorSpeed/(32*(setSampleTime/1000))(r/s) */
 const int motorDirPin[4][2] = { //Forward, Backward
 /*Motor-driven IO ports*/
-	{8,23},
+  {8,23},
   {7,9},	
-	{24,14},
-	{4,25}
+  {24,14},
+  {4,25}
 };
 
 
