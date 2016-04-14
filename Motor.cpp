@@ -3,7 +3,7 @@
 * @brief Motor.cpp Interrupted function deployment, encoder motor configurations and corresponding PWM soft function
 *
 *  Motor.cpp Corresponds to a set of orthogonal codes for each motor and PWM. 
-*               Implements timer 5 implementation of PWM, timer every 3.9 Î¼s (1/256 MS) into an interruption.
+*               Implements timer 5 implementation of PWM, timer every 3.9 ¦Ìs (1/256 MS) into an interruption.
 * 
 * @author linfeng(490289303@qq.com)
 * @version  V1.0
@@ -17,9 +17,9 @@ unsigned char conter; ///< Counter every 1ms up plus 1, range 0-255
 unsigned char PWMFlag;///< PWM logo, used to determine which one you should use IO
 
 EncoderIO encoderIO[4]=
-{
-  {RCC_APB2Periph_GPIOA,RCC_APB1Periph_TIM2,GPIO_Pin_0 | GPIO_Pin_1,GPIOA,TIM2},
+{  
   {RCC_APB2Periph_GPIOA,RCC_APB1Periph_TIM3,GPIO_Pin_6 | GPIO_Pin_7,GPIOB,TIM3},
+  {RCC_APB2Periph_GPIOA,RCC_APB1Periph_TIM2,GPIO_Pin_0 | GPIO_Pin_1,GPIOA,TIM2},  
   {RCC_APB2Periph_GPIOB,RCC_APB1Periph_TIM4,GPIO_Pin_6 | GPIO_Pin_7,GPIOB,TIM4},
   {RCC_APB2Periph_GPIOC,RCC_APB2Periph_TIM8,GPIO_Pin_6 | GPIO_Pin_7,GPIOC,TIM8}
 };
@@ -29,7 +29,7 @@ EncoderIO encoderIO[4]=
 /*!
 * @brief Break function for entrance
 *
-* @brief  3.9 Î¼s into break, achieving up to 4 duty for 0-255 PWM
+* @brief  3.9 ¦Ìs into break, achieving up to 4 duty for 0-255 PWM
 *
 * @return void
 */ 
@@ -224,7 +224,7 @@ int Motor::setSpeed(int speed_)
 * @brief calibrate
 *
 * @brief Calibration intervals PWM output
-*e
+*
 * @return void
 */
 void Motor::calibrate(void)
@@ -238,7 +238,7 @@ void Motor::calibrate(void)
 		setCounter(30000);		
 		distance += wheelSpeed; 		
 		PWMSet(output); 		
-		Serial1.println(wheelSpeed);
+		Serial1.println(wheelSpeed);		
 	}
 }
 
@@ -317,14 +317,15 @@ void Motor::setCounter(unsigned short Count)
 
 void Motor::start_()
 {
-	if(speed > 0){
-      PWMInit(backwardPin);
-      pinMode(forwardPin, OUTPUT);
-      digitalWrite(forwardPin,LOW);
-	}else{
-      PWMInit(forwardPin);
+	if(speed < 0){	  
+	  PWMInit(forwardPin);
       pinMode(backwardPin,OUTPUT);
       digitalWrite(backwardPin,LOW);
+	}else{
+		PWMInit(backwardPin);
+      pinMode(forwardPin, OUTPUT);
+      digitalWrite(forwardPin,LOW);
+      
 	}
 	
 	setpoint=abs(speed);

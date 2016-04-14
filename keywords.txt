@@ -12,24 +12,25 @@ Motor	KEYWORD1
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
-SetPin	KEYWORD2
-SetMode	KEYWORD2
-Compute	KEYWORD2
-SetOutputLimits	KEYWORD2
-SetTunings	KEYWORD2
-SetControllerDirection	KEYWORD2
-SetSampleTime	KEYWORD2
-GetKp	KEYWORD2
-GetKi	KEYWORD2
-GetKd	KEYWORD2
-GetMode	KEYWORD2
-GetDirection	KEYWORD2
+setPin	KEYWORD2
+setPid	KEYWORD2
+setSampleTime	KEYWORD2
+getSpeed	KEYWORD2
+setChannel	KEYWORD2
+ready	KEYWORD2
+setSpeed	KEYWORD2
+calibrate	KEYWORD2
+init	KEYWORD2
+getCounter	KEYWORD2
+setCounter	KEYWORD2
+start_	KEYWORD2
+stop	KEYWORD2
+PWMInit	KEYWORD2
+PWMStart	KEYWORD2
+PWMStop	KEYWORD2
+PWMSet	KEYWORD2
+
 
 #######################################
 # Constants (LITERAL1)
 #######################################
-
-AUTOMATIC	LITERAL1
-MANUAL	LITERAL1
-DIRECT	LITERAL1
-REVERSE	LITERAL1

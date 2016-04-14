@@ -7,29 +7,29 @@
 * 
 * @author linfeng(490289303@qq.com)
 * @version  V1.0
-* @date  2016-3-2
+* @date  2016-4-14
 */
 #include "PID_v1.h"
 #include "Motor.h"
 
 Motor motor[4];
-int motorSpeed[4] = {100,200,200,100};/*Set 4 speed motor*/
+int motorSpeed[4] = {-200,200,400,-400};/*Set 4 speed motor*/
+/* Speed=motorSpeed/(32*(setSampleTime/1000))(r/s) */
 const int motorDirPin[4][2] = { //Forward, Backward
 /*Motor-driven IO ports*/
 	{8,23},
-        {7,9},	
+  {7,9},	
 	{24,14},
 	{4,25}
 };
 
 
 //const double motorPidParam[3]={0.6,1,0.03};/*DC MOTOR,Yellow??180degree*/
-const double motorPidParam[3]={1.5,1,0.05};/*DC MOTOR,Yellow??90 degree*/
-
+//const double motorPidParam[3]={1.5,1,0.05};/*DC MOTOR,Yellow??90 degree*/
+const double motorPidParam[3]={1.2,0.8,0.05};/*Encoder V1.0,160rd/min ;19500/min; 32:1,Kr=3.5*/
 void setup( void )
 {
   Serial1.begin(115200);
-  Serial1.println("setup begin:");
      for(int i=0;i<4;i++){
 		motor[i].setPid(motorPidParam[0],motorPidParam[1],motorPidParam[2]);/*Tuning PID parameters*/
 		motor[i].setPin(motorDirPin[i][0],motorDirPin[i][1]);/*Configure IO ports*/
@@ -38,7 +38,6 @@ void setup( void )
 		motor[i].ready();/*Motor enable*/
                 motor[i].setSpeed(motorSpeed[i]);/*Set motor speed*/
 	}
-Serial1.println("setup end:");
 }
 
 void loop( void )
